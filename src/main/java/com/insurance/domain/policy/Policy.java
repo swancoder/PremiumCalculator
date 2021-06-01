@@ -1,5 +1,6 @@
 package com.insurance.domain.policy;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,15 +12,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Policy {
     @Getter
-    @Setter
     private String number;
     @Getter
     @Setter
     private PolicyStatus status;
-    @Getter
+    @Getter(AccessLevel.PACKAGE)
     private List<PolicyObject> objects;
 
-    public Policy(String number) {
+     Policy(String number) {
         this.number = number;
         this.objects = new ArrayList<>();
     }

@@ -1,5 +1,6 @@
 package com.insurance.domain.policy;
 
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,22 +13,22 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 @EqualsAndHashCode
 public class PolicyObject {
-    @Setter @Getter
+    @Getter(AccessLevel.PACKAGE)
     private String name;
-    @Getter
+    @Getter(AccessLevel.PACKAGE)
     private List<PolicySubObject> subObjects;
 
-    public PolicyObject(String name) {
+     PolicyObject(String name) {
         this.name = name;
         this.subObjects = new ArrayList<>();
     }
 
-    public void addSubObject(PolicySubObject policySubObject) {
+     void addSubObject(PolicySubObject policySubObject) {
         checkNotNull(policySubObject);
         this.subObjects.add(policySubObject);
     }
 
-    public BigDecimal getSumInsured(RiskType type) {
+     BigDecimal getSumInsured(RiskType type) {
         BigDecimal result = BigDecimal.ZERO;
         for (PolicySubObject subObj: subObjects) {
             if (subObj.getType().equals(type)) {
