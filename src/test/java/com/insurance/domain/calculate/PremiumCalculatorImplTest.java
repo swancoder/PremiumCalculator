@@ -44,4 +44,22 @@ class PremiumCalculatorImplTest {
         assertEquals(17.13, calc.calculate(policy));
     }
 
+    @Test
+    public void acceptanceTestTwo_DifferentSplit() {
+        Policy policy = PolicyBuilder.getBuilder().createPolicy("policy #123")
+                .addPolicyObject("p-obj #123")
+                    .addSubObject("s-obj #123/1", 100, RiskType.FIRE)
+                    .addSubObject("s-obj #123/2", 25, RiskType.THEFT)
+                    .addSubObject("s-obj #123/2", 25, RiskType.THEFT)
+                .addPolicyObject("p-obj #124")
+                    .addSubObject("s-obj #124/1", 350, RiskType.FIRE)
+                    .addSubObject("s-obj #124/2", 2.51, RiskType.THEFT)
+                .addPolicyObject("p-obj #125")
+                    .addSubObject("s-obj #125/1", 50, RiskType.FIRE)
+                    .addSubObject("s-obj #125/2", 50, RiskType.THEFT)
+                .build();
+
+        assertEquals(17.13, calc.calculate(policy));
+    }
+
 }
